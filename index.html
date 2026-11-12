@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Simulador académico del método de Euler aplicado al lanzamiento de un cohete, NASA 1962.">
+  <title>Misión espacial NASA 1962 | Método de Euler</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav-space">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#inicio"><i class="bi bi-rocket-takeoff-fill me-2"></i>NASA · 1962</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContenido" aria-controls="navContenido" aria-expanded="false" aria-label="Abrir navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navContenido">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#contexto">Contexto</a></li>
+          <li class="nav-item"><a class="nav-link" href="#modelo">Modelo</a></li>
+          <li class="nav-item"><a class="nav-link" href="#simulador">Simulador</a></li>
+          <li class="nav-item"><a class="nav-link" href="#resultados">Resultados</a></li>
+          <li class="nav-item"><a class="nav-link" href="#conclusiones">Conclusiones</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="inicio" class="hero-space">
+    <div class="container py-5">
+      <div class="hero-content">
+        <span class="eyebrow"><i class="bi bi-stars me-2"></i>COM-254 · MÉTODOS NUMÉRICOS</span>
+        <h1 class="display-4 fw-bold mt-3">Misión espacial<br><span>NASA 1962</span></h1>
+        <p class="lead mt-3">Aplicación del método de Euler al modelo matemático del ascenso de un cohete.</p>
+        <a href="#simulador" class="btn btn-warning btn-lg mt-3 fw-semibold">Iniciar simulación <i class="bi bi-arrow-down-right ms-2"></i></a>
+      </div>
+      <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+      <i class="bi bi-rocket-takeoff-fill rocket-art"></i>
+      <div class="hero-caption">SIMULACIÓN ACADÉMICA · VUELO VERTICAL IDEALIZADO</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container student-strip py-4">
+      <div class="row g-3 text-center">
+        <div class="col-md-4"><div class="student-item"><i class="bi bi-person-badge"></i><span>Estudiante: <strong>Conde Gutierrez Rafael Blas</strong></span></div></div>
+        <div class="col-md-4"><div class="student-item"><i class="bi bi-journal-code"></i><strong>COM-254 Métodos Numéricos</strong></div></div>
+        <div class="col-md-4"><div class="student-item"><i class="bi bi-calendar3"></i><strong>II - 2026</strong></div></div>
+      </div>
+    </section>
+
+    <section id="contexto" class="section-pad container">
+      <div class="section-heading">
+        <span class="section-kicker">01 · CONTEXTO HISTÓRICO</span>
+        <h2>Las matemáticas detrás de la carrera espacial</h2>
+        <p>En 1962, la NASA desarrollaba misiones tripuladas como Mercury-Atlas 6, en la que John Glenn orbitó la Tierra. Los cálculos de trayectoria, navegación y retorno eran esenciales para la seguridad de las misiones.</p>
+      </div>
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-7">
+          <div class="info-panel h-100">
+            <h3><i class="bi bi-calculator me-2"></i>Inspiración: <em>Talentos ocultos</em></h3>
+            <p>La película <em>Hidden Figures</em> (2016) muestra el trabajo de las matemáticas Katherine Johnson, Dorothy Vaughan y Mary Jackson en la NASA. La historia destaca la importancia de verificar cálculos matemáticos y computacionales para las misiones espaciales.</p>
+            <p>El método de Euler es una técnica numérica para aproximar soluciones de ecuaciones diferenciales. En esta actividad se utiliza para estudiar un ascenso vertical simplificado, inspirado en los problemas de dinámica y trayectoria de la era espacial.</p>
+            <div class="alert alert-info mb-0"><strong>Precisión histórica:</strong> este simulador no reproduce los cálculos oficiales de Mercury ni afirma que Euler fuera el único método usado por la NASA. Es un modelo didáctico inspirado en el contexto de 1962.</div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="mission-card h-100">
+            <span class="badge text-bg-warning mb-3">DESAFÍO</span>
+            <h3>¿Cómo evoluciona el vuelo?</h3>
+            <p>Calcular la velocidad y la altura de un cohete durante los primeros 20 segundos, comparar Euler con la solución analítica y evaluar el efecto del tamaño de paso.</p>
+            <ul class="mission-list">
+              <li><i class="bi bi-check2-circle"></i> Construir el modelo diferencial.</li>
+              <li><i class="bi bi-check2-circle"></i> Ejecutar Euler, Heun y RK4.</li>
+              <li><i class="bi bi-check2-circle"></i> Medir errores y visualizar resultados.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="modelo" class="section-pad section-muted">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">02 · MODELO MATEMÁTICO</span>
+          <h2>Fuerzas y ecuaciones diferenciales</h2>
+          <p>Se considera un cohete que asciende verticalmente, con empuje constante, masa constante y resistencia lineal del aire.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="formula-card h-100">
+              <h3>Segunda ley de Newton</h3>
+              <div class="formula">m · dv/dt = T − mg − kv</div>
+              <p>Al despejar la aceleración:</p>
+              <div class="formula formula-highlight">dv/dt = T/m − g − (k/m)v</div>
+              <div class="formula">dy/dt = v</div>
+              <p class="small text-secondary mb-0">El eje vertical positivo apunta hacia arriba. La resistencia kv se opone al ascenso.</p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="formula-card h-100">
+              <h3>Parámetros iniciales del desafío</h3>
+              <div class="table-responsive">
+                <table class="table table-sm align-middle mb-0">
+                  <thead><tr><th>Parámetro</th><th>Símbolo</th><th>Valor inicial</th></tr></thead>
+                  <tbody>
+                    <tr><td>Masa</td><td>m</td><td>1.000 kg</td></tr>
+                    <tr><td>Empuje</td><td>T</td><td>15.000 N</td></tr>
+                    <tr><td>Gravedad</td><td>g</td><td>9,81 m/s²</td></tr>
+                    <tr><td>Resistencia lineal</td><td>k</td><td>100 kg/s</td></tr>
+                    <tr><td>Velocidad inicial</td><td>v₀</td><td>0 m/s</td></tr>
+                    <tr><td>Altura inicial</td><td>y₀</td><td>0 m</td></tr>
+                    <tr><td>Duración</td><td>t final</td><td>20 s</td></tr>
+                    <tr><td>Paso</td><td>h</td><td>2 s</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="alert alert-warning mt-4 mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i><strong>Alcance físico:</strong> es un modelo educativo, no un simulador aeroespacial de alta fidelidad. Un cohete real pierde masa por consumo de combustible, el empuje cambia y la resistencia depende de la densidad atmosférica y de la velocidad, entre otros factores.</div>
+      </div>
+    </section>
+
+    <section id="simulador" class="section-pad container">
+      <div class="section-heading">
+        <span class="section-kicker">03 · SIMULADOR</span>
+        <h2>Configura y ejecuta la misión</h2>
+        <p>Los valores son editables. Al modificar un parámetro y ejecutar la simulación, se recalculan las tablas, indicadores y gráficas.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div class="control-panel">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h3 class="mb-0">Parámetros de vuelo</h3>
+              <button id="btnRestablecer" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-counterclockwise me-1"></i>Restablecer</button>
+            </div>
+            <form id="formSimulacion">
+              <div class="row g-3">
+                <div class="col-6"><label class="form-label" for="masa">Masa m (kg)</label><input class="form-control" type="number" id="masa" min="0.001" step="any" value="1000" required></div>
+                <div class="col-6"><label class="form-label" for="empuje">Empuje T (N)</label><input class="form-control" type="number" id="empuje" step="any" value="15000" required></div>
+                <div class="col-6"><label class="form-label" for="gravedad">Gravedad g (m/s²)</label><input class="form-control" type="number" id="gravedad" min="0" step="any" value="9.81" required></div>
+                <div class="col-6"><label class="form-label" for="coeficiente">Coeficiente k (kg/s)</label><input class="form-control" type="number" id="coeficiente" min="0" step="any" value="100" required></div>
+                <div class="col-6"><label class="form-label" for="velInicial">Velocidad inicial v₀ (m/s)</label><input class="form-control" type="number" id="velInicial" step="any" value="0" required></div>
+                <div class="col-6"><label class="form-label" for="altInicial">Altura inicial y₀ (m)</label><input class="form-control" type="number" id="altInicial" step="any" value="0" required></div>
+                <div class="col-6"><label class="form-label" for="tiempo">Tiempo final (s)</label><input class="form-control" type="number" id="tiempo" min="0.01" max="10000" step="any" value="20" required></div>
+                <div class="col-6"><label class="form-label" for="paso">Paso h (s)</label><input class="form-control" type="number" id="paso" min="0.001" max="1000" step="any" value="2" required></div>
+                <div class="col-12"><label class="form-label" for="metodo">Método numérico</label>
+                  <select class="form-select" id="metodo">
+                    <option value="euler" selected>Euler explícito</option>
+                    <option value="heun">Heun (Euler mejorado)</option>
+                    <option value="rk4">Runge-Kutta de cuarto orden (RK4)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-grid mt-4"><button class="btn btn-primary btn-lg" type="submit"><i class="bi bi-play-fill me-2"></i>Ejecutar simulación</button></div>
+              <div id="mensaje" class="small mt-3" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="result-panel h-100">
+            <h3>Panel de telemetría</h3>
+            <p class="text-secondary small">Resultados en el instante final de la simulación.</p>
+            <div class="row g-3">
+              <div class="col-sm-6"><div class="metric-card"><span>Velocidad numérica</span><strong id="kpiVelocidad">—</strong><small>m/s</small></div></div>
+              <div class="col-sm-6"><div class="metric-card"><span>Altura numérica</span><strong id="kpiAltura">—</strong><small>m</small></div></div>
+              <div class="col-sm-6"><div class="metric-card"><span>Velocidad analítica</span><strong id="kpiVelExacta">—</strong><small>m/s</small></div></div>
+              <div class="col-sm-6"><div class="metric-card"><span>Altura analítica</span><strong id="kpiAltExacta">—</strong><small>m</small></div></div>
+            </div>
+            <div class="row g-3 mt-1">
+              <div class="col-6"><div class="error-chip"><span>Error absoluto en v</span><strong id="kpiErrorV">—</strong></div></div>
+              <div class="col-6"><div class="error-chip"><span>Error absoluto en y</span><strong id="kpiErrorY">—</strong></div></div>
+            </div>
+            <div class="mt-4">
+              <h4 class="h6">Interpretación del resultado</h4>
+              <p id="interpretacion" class="mb-0 text-secondary">Ejecuta la simulación para obtener el análisis del vuelo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultados" class="section-pad section-muted">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">04 · RESULTADOS</span>
+          <h2>Visualización y análisis numérico</h2>
+          <p>Las gráficas comparan el método seleccionado con la solución analítica. La tabla muestra cada instante calculado y su error absoluto.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-6"><div class="chart-card"><h3>Velocidad vs. tiempo</h3><div class="chart-wrap"><canvas id="graficaVelocidad" aria-label="Gráfica de velocidad en función del tiempo"></canvas></div></div></div>
+          <div class="col-lg-6"><div class="chart-card"><h3>Altura vs. tiempo</h3><div class="chart-wrap"><canvas id="graficaAltura" aria-label="Gráfica de altura en función del tiempo"></canvas></div></div></div>
+        </div>
+        <div class="table-card mt-4">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+            <div><h3 class="mb-1">Tabla de iteraciones</h3><p class="small text-secondary mb-0">Incluye valores numéricos, analíticos y errores absolutos.</p></div>
+            <button id="btnCSV" class="btn btn-outline-primary"><i class="bi bi-filetype-csv me-2"></i>Descargar CSV</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle" id="tablaResultados">
+              <thead><tr><th>n</th><th>t (s)</th><th>v num. (m/s)</th><th>v exacta (m/s)</th><th>Error v</th><th>y num. (m)</th><th>y exacta (m)</th><th>Error y</th></tr></thead>
+              <tbody><tr><td colspan="8" class="text-center text-secondary py-4">Ejecuta la simulación para generar resultados.</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="table-card mt-4">
+          <h3>Comparación de métodos al tiempo final</h3>
+          <div class="table-responsive">
+            <table class="table table-striped align-middle mb-0">
+              <thead><tr><th>Método</th><th>Velocidad (m/s)</th><th>Error v</th><th>Altura (m)</th><th>Error y</th></tr></thead>
+              <tbody id="tablaMetodos"><tr><td colspan="5" class="text-center text-secondary">Ejecuta la simulación.</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="desarrollo" class="section-pad container">
+      <div class="section-heading">
+        <span class="section-kicker">05 · FUNDAMENTO NUMÉRICO</span>
+        <h2>¿Cómo trabajan los métodos?</h2>
+      </div>
+      <div class="row g-3">
+        <div class="col-lg-4"><div class="method-card h-100"><span class="method-number">01</span><h3>Euler explícito</h3><div class="formula">zₙ₊₁ = zₙ + h f(tₙ,zₙ)</div><p>Utiliza la pendiente al inicio del intervalo. Es sencillo, pero su error global es de orden O(h).</p></div></div>
+        <div class="col-lg-4"><div class="method-card h-100"><span class="method-number">02</span><h3>Heun</h3><div class="formula">zₙ₊₁ = zₙ + h(k₁+k₂)/2</div><p>Promedia la pendiente inicial y una pendiente predictiva al final del intervalo. Su orden global es O(h²).</p></div></div>
+        <div class="col-lg-4"><div class="method-card h-100"><span class="method-number">04</span><h3>Runge-Kutta RK4</h3><div class="formula">zₙ₊₁ = zₙ + h(k₁+2k₂+2k₃+k₄)/6</div><p>Combina cuatro estimaciones de pendiente. Su orden global es O(h⁴) y suele ofrecer alta precisión con pocos pasos.</p></div></div>
+      </div>
+      <div class="formula-card mt-4">
+        <h3>Solución analítica de referencia</h3>
+        <p>Para m, T, g y k constantes, definimos a = T/m − g y b = k/m. Si b es distinto de cero:</p>
+        <div class="formula formula-highlight">v(t) = a/b + (v₀ − a/b)e<sup>−bt</sup></div>
+        <div class="formula formula-highlight">y(t) = y₀ + (a/b)t + (v₀ − a/b)(1 − e<sup>−bt</sup>)/b</div>
+        <p class="small text-secondary mb-0">Si k = 0, la solución límite es v(t) = v₀ + at; y(t) = y₀ + v₀t + at²/2. El programa contempla ambos casos.</p>
+      </div>
+    </section>
+
+    <section id="conclusiones" class="section-pad section-dark">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">06 · CONCLUSIONES</span>
+          <h2>De la ecuación al vuelo simulado</h2>
+          <p>El método de Euler transforma una ecuación diferencial en una secuencia de cálculos. Su precisión depende del tamaño del paso y de las características del problema.</p>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-4"><div class="conclusion-card"><i class="bi bi-graph-up-arrow"></i><h3>Aproximación</h3><p>Euler permite estimar velocidad y altura sin resolver analíticamente el sistema.</p></div></div>
+          <div class="col-md-4"><div class="conclusion-card"><i class="bi bi-bullseye"></i><h3>Precisión</h3><p>Reducir h generalmente disminuye el error, a costa de aumentar el número de iteraciones.</p></div></div>
+          <div class="col-md-4"><div class="conclusion-card"><i class="bi bi-shield-check"></i><h3>Verificación</h3><p>La solución analítica funciona como referencia para evaluar la calidad de los resultados numéricos.</p></div></div>
+        </div>
+        <div class="reflection mt-4">
+          <h3>Preguntas para reflexionar</h3>
+          <ol class="mb-0">
+            <li>¿Por qué era importante verificar los cálculos antes de enviar astronautas al espacio?</li>
+            <li>¿Qué riesgos aparecen al utilizar un tamaño de paso demasiado grande?</li>
+            <li>¿Por qué una aproximación puede parecer razonable y aun así acumular errores?</li>
+            <li>¿Qué variables reales del lanzamiento no contempla este modelo?</li>
+            <li>¿Por qué una trayectoria lunar requiere un modelo más complejo que un ascenso vertical?</li>
+          </ol>
+        </div>
+        <p class="footer-note mt-5 mb-0">COM-254 · Métodos Numéricos · II - 2026 <span>Simulación con fines académicos</span></p>
+      </div>
+    </section>
+  </main>
+
+  <button id="btnArriba" class="btn btn-warning back-top" aria-label="Volver arriba"><i class="bi bi-arrow-up"></i></button>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

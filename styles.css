@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+:root{--navy:#07182f;--navy2:#0c2545;--blue:#145da0;--cyan:#67c7dc;--gold:#ffc857;--ink:#17263b;--muted:#64748b;--surface:#fff;--line:#e5eaf1}
+*{box-sizing:border-box;scroll-margin-top:82px}
+body{font-family:'DM Sans',sans-serif;color:var(--ink);background:#fff;line-height:1.65}
+h1,h2,h3,h4,.navbar-brand{font-family:'Space Grotesk',sans-serif}
+.nav-space{background:rgba(5,19,39,.96);backdrop-filter:blur(12px);box-shadow:0 5px 25px #0002}
+.navbar-brand{letter-spacing:.04em}.nav-link{font-weight:600;margin-left:1rem}
+.hero-space{min-height:570px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 75% 40%,#174c79 0,#0c2749 35%,#06152b 75%);color:white;padding-top:70px}
+.hero-space:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#ffffffa6 .8px,transparent .8px);background-size:43px 43px;opacity:.24}
+.hero-content{position:relative;z-index:2;max-width:660px;padding:60px 0 85px}
+.eyebrow,.section-kicker{font-size:.76rem;font-weight:700;letter-spacing:.16em;color:#2386bd}
+.hero-space .eyebrow{color:var(--gold)}.hero-space h1{line-height:1.04;letter-spacing:-.045em}.hero-space h1 span{color:var(--gold)}
+.hero-space .lead{max-width:570px;color:#d3e1ef}.hero-caption{position:absolute;bottom:25px;left:12px;font-size:.68rem;letter-spacing:.15em;color:#a9bfd4}
+.rocket-art{position:absolute;right:13%;top:26%;font-size:13rem;color:#dceaf7;transform:rotate(-42deg);filter:drop-shadow(0 15px 22px #0008);opacity:.92}
+.orbit{position:absolute;border:1px solid #83c5df55;border-radius:50%;transform:rotate(-24deg)}.orbit-one{width:440px;height:170px;right:5%;top:30%}.orbit-two{width:570px;height:230px;right:0;top:25%}
+.student-strip{margin-top:-1px}.student-item{height:100%;display:flex;align-items:center;justify-content:center;gap:.65rem;padding:1rem;border:1px solid var(--line);border-radius:12px;background:white;font-size:.9rem}.student-item i{font-size:1.2rem;color:var(--blue)}
+.section-pad{padding-top:85px;padding-bottom:85px}.section-muted{background:#f3f6fa}.section-heading{max-width:790px;margin-bottom:2.5rem}.section-heading h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;letter-spacing:-.035em;margin:.55rem 0 1rem}.section-heading p{color:var(--muted);font-size:1.05rem}
+.info-panel,.formula-card,.control-panel,.result-panel,.chart-card,.table-card,.method-card{background:white;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:0 10px 30px #102b4a08}
+.info-panel h3,.mission-card h3,.formula-card h3,.control-panel h3,.result-panel h3,.chart-card h3,.table-card h3,.method-card h3{font-size:1.15rem;font-weight:700;margin-bottom:1rem}
+.info-panel p{color:#526174}.mission-card{height:100%;border-radius:18px;padding:1.7rem;color:#eaf3fb;background:linear-gradient(145deg,#102d50,#07182f)}
+.mission-card p{color:#c2d1e0}.mission-list{list-style:none;padding:0;margin:1.3rem 0 0}.mission-list li{margin:.65rem 0}.mission-list i{color:var(--gold);margin-right:.5rem}
+.formula{font-family:Georgia,serif;background:#f2f6fb;border:1px solid #e3ebf4;border-radius:10px;padding:.9rem 1rem;margin:.8rem 0;text-align:center;font-size:clamp(1rem,2vw,1.25rem);color:#123e68;overflow-wrap:anywhere}
+.formula-highlight{background:#eaf4ff;border-color:#cfe3f7;font-weight:700}.formula-card p{color:#65758a}.formula-card .table{font-size:.92rem}.formula-card th{color:#526174}
+.control-panel{position:sticky;top:95px}.form-label{font-weight:600;font-size:.88rem}.form-control,.form-select{border-color:#d8e1ec;padding:.68rem .75rem}.form-control:focus,.form-select:focus{border-color:#3985c5;box-shadow:0 0 0 .2rem #3985c522}
+.btn-primary{background:#145da0;border-color:#145da0}.btn-primary:hover{background:#0c477d;border-color:#0c477d}
+.metric-card{height:100%;background:#f3f7fb;border:1px solid #e7edf4;border-radius:13px;padding:1rem;display:flex;flex-direction:column}.metric-card span,.error-chip span{font-size:.79rem;color:#65758a}.metric-card strong{font-family:'Space Grotesk';font-size:1.65rem;color:#104c80;overflow-wrap:anywhere}.metric-card small{color:#7b8999}.error-chip{display:flex;flex-direction:column;background:#fff8e9;border:1px solid #f6e6bf;padding:.8rem;border-radius:12px}.error-chip strong{font-size:1.1rem;color:#895c00}
+.chart-card,.table-card{padding:1.4rem}.chart-wrap{height:320px;position:relative}.table{font-size:.86rem;white-space:nowrap}.table thead th{background:#edf3f9;color:#34516f;font-size:.78rem}.table-card .table-responsive{max-height:520px}
+.method-card{position:relative;overflow:hidden}.method-number{font-family:'Space Grotesk';font-size:2.5rem;color:#dce9f5;font-weight:700}.method-card h3{margin-top:.3rem}.method-card p{color:#64748b;font-size:.93rem}.method-card .formula{font-size:.96rem}
+.section-dark{background:linear-gradient(145deg,#07182f,#0d2b4c);color:#f1f6fb}.section-dark .section-kicker{color:var(--gold)}.section-dark .section-heading p{color:#b9c9d9}
+.conclusion-card{height:100%;padding:1.5rem;border:1px solid #ffffff24;border-radius:15px;background:#ffffff0a}.conclusion-card i{font-size:1.7rem;color:var(--gold)}.conclusion-card h3{font-size:1.1rem;margin:.8rem 0}.conclusion-card p{color:#c0cede;margin:0}
+.reflection{padding:1.5rem;border-radius:15px;background:#ffffff0c;border:1px solid #ffffff24}.reflection h3{font-size:1.15rem}.reflection li{margin:.45rem 0;color:#d4dfeb}
+.footer-note{border-top:1px solid #ffffff26;padding-top:1.2rem;color:#b9c9d9;font-size:.85rem;display:flex;justify-content:space-between;gap:1rem}
+.back-top{position:fixed;right:22px;bottom:22px;border-radius:50%;width:46px;height:46px;box-shadow:0 5px 20px #0003;display:none;z-index:1000}
+@media(max-width:991px){.rocket-art{right:5%;font-size:9rem;opacity:.25}.hero-content{max-width:100%}.control-panel{position:static}}
+@media(max-width:575px){.hero-space{min-height:520px}.hero-content{padding:65px 0}.hero-space h1{font-size:2.8rem}.section-pad{padding-top:60px;padding-bottom:60px}.student-item{justify-content:flex-start}.chart-wrap{height:270px}.footer-note{flex-direction:column}}
